@@ -21,7 +21,7 @@ from data_relation.variables.base import Variable
 
 class Table:
 
-    def __init__(self, table: pd.DataFrame, 
+    def __init__(self, table: pd.DataFrame,
                  data_columns: list = None, index_columns: list = None) -> None:
 
         self.data_columns = [] if data_columns is None else data_columns
@@ -35,14 +35,14 @@ class Table:
                             for k in self.table.columns}
         self.__update_data_index_columns()
 
-    def __update_data_index_columns(self):
+    def __update_data_index_columns(self) -> None:
         for k in self.d_variables:
             if self.d_variables[k].is_index and k not in self.index_columns:
                 self.index_columns.append(k)
             if self.d_variables[k].is_data and k not in self.data_columns:
                 self.data_columns.append(k)
 
-    def get_relations_by_name(self, other):
+    def get_relations_by_name(self, other) -> pd.DataFrame:
 
         common_index = self.__get_common_columns(self.index_columns, other.index_columns)
 
@@ -51,14 +51,14 @@ class Table:
 
         res = {}
         for c in common_index:
-            res[c] = (self.d_variables[c] @ other.d_variables[c])
+            res[c] = self.d_variables[c] @ other.d_variables[c]
 
         df_res = pd.DataFrame.from_dict(res, orient='index')
         df_res.columns = ['relation', 'constraint_on_column_1', 'constraint_on_column_2']
 
         return df_res
 
-    def get_relations_by_pairs(self, other):
+    def get_relations_by_pairs(self, other) -> pd.DataFrame:
 
         assert self.index_columns != [], "no index columns detected in table 1"
         assert other.index_columns != [], "no index columns detected in table 2"
@@ -68,7 +68,7 @@ class Table:
         res = {}
 
         for pair in pairs:
-            relation_pair = (self.d_variables[pair[0]] @ other.d_variables[pair[1]])
+            relation_pair = self.d_variables[pair[0]] @ other.d_variables[pair[1]]
             if relation_pair:
                 res[pair] = relation_pair
 
@@ -79,7 +79,7 @@ class Table:
 
     def __str__(self) -> str:
         return str(pd.DataFrame.from_dict({k: [self.d_variables[k],
-                                               self.d_variables[k].critere_arret] 
+                                               self.d_variables[k].critere_arret]
                                                for k in self.d_variables}, orient='index'))
 
     def __repr__(self) -> str:
