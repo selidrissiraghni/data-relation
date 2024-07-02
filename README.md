@@ -1,4 +1,5 @@
 # Data Relation
+![cov](https://github.com/selidrissiraghni/data-relation/blob/coverage-badge/coverage.svg)
 
 ## Getting started
 
