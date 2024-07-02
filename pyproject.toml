@@ -1,0 +1,25 @@
+[build-system]
+requires = [
+    "setuptools>=40.8.0"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []
+
+[project]
+name = "data-relation"
+version = "0.1"
+authors = [{ name = "Eurobios", email = "contact_ost@eurobios.com" }]
+description = "Python API for data relation"
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+"Programming Language :: Python :: 3",
+"Operating System :: OS Independent",
+]
+keywords = ["data", "relations"]
+dynamic = ["dependencies"]
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
