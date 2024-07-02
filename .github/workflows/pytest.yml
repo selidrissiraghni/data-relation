@@ -31,6 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         pip install openml
+        pip install numpy==1.26.2
         pip install .
         
     - name: Analysing the code with pytest
