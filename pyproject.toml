@@ -4,9 +4,6 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-py-modules = []
-
 [project]
 name = "data-relation"
 version = "0.1"
