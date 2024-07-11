@@ -67,7 +67,7 @@ class Variable(VariableCalcul):
             self.__isdata = True
             self.critere_arret = 'Date variable'
 
-        elif self.is_int and self.is_cst_length:
+        elif self.is_int and self.is_cst_length or self.is_cst_length:
             self.__isindex = True
             self.critere_arret = 'Int cst length'
 
