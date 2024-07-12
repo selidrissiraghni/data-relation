@@ -22,7 +22,7 @@ def get_relation(column1: pd.Series, column2: pd.Series):
     intersection = set(column1.values).intersection(column2.values)
 
     if len(intersection) == 0:
-        return None
+        return None, None, None
 
     column1_inclusion = sum([1 for e in column1 if e in intersection])
     column2_inclusion = sum([1 for e in column2 if e in intersection])
