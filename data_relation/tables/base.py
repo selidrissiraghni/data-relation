@@ -57,6 +57,13 @@ class Table:
         df_res.columns = ['relation', 'constraint_on_column_1', 'constraint_on_column_2']
 
         return df_res
+    
+    def get_relation_two_columns(self, other, left_on, right_on):
+        
+        left_var = self.d_variables[left_on]
+        right_var = other.d_variables[right_on]
+
+        return left_var @ right_var
 
     def get_relations_by_pairs(self, other) -> pd.DataFrame:
 
